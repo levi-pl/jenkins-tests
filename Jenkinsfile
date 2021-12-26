@@ -1,7 +1,8 @@
 pipeline {
-  agent kubernetes {
-    label shell-pod
-    yaml """
+  agent {
+    kubernetes {
+      label shell-pod
+      yaml """
 kind: Pod
 metadata:
   name: jenkins-agent
@@ -15,6 +16,7 @@ spec:
     tty: true
   restartPolicy: Never
 """
+    }
   }
   stages {
     stage('STAGE 1') {
