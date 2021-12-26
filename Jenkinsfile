@@ -1,6 +1,20 @@
 pipeline {
-  agent {
-    kubernetes 
+  agent kubernetes {
+    label shell-pod
+    yaml """
+kind: Pod
+metadata:
+  name: jenkins-agent
+spec:
+  containers:
+  - name: shell
+    image: ubuntu:22.04
+    imagePullPolicy: Always
+    command:
+    - cat
+    tty: true
+  restartPolicy: Never
+"""
   }
   stages {
     stage('STAGE 1') {
