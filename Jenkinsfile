@@ -8,13 +8,10 @@ metadata:
   namespace: jenkins
 spec:
   containers:
-    - name: busybox
-      image: busybox
+    - name: ubuntu
+      image: ubuntu
       imagePullPolicy: IfNotPresent
-      command:
-        - sleep
-      parameters:
-        - 99d
+      command: ["tail", "-f", "/dev/null"]
       tty: true
   restartPolicy: Never
 """
