@@ -5,6 +5,7 @@ pipeline {
 kind: Pod
 metadata:
   name: jenkins-agent
+  namespace: jenkins
 spec:
   containers:
   - name: shell
