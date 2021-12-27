@@ -4,16 +4,18 @@ pipeline {
       yaml """
 kind: Pod
 metadata:
-  name: jenkins-agent
+  name: jenkins-build-agent
   namespace: jenkins
 spec:
   containers:
-  - name: shell
-    image: ubuntu:22.04
-    imagePullPolicy: Always
-    command:
-    - cat
-    tty: true
+    - name: busybox
+      image: busybox
+      imagePullPolicy: IfNotPresent
+      command:
+        - sleep
+      parameters:
+        - 99d
+      tty: true
   restartPolicy: Never
 """
     }
